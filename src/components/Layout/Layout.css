@@ -1,0 +1,22 @@
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+
+  display: inline;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  max-width: 1440px;
+  min-width: 375px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0 1rem; 
+  }
+}
