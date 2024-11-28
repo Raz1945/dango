@@ -1,0 +1,13 @@
+.elipse{
+  position: absolute;
+  bottom: 2px;
+  left: 7px;
+}
+
+.layout__arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
