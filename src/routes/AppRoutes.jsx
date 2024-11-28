@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '../components/Layout/Layout';
+import {Home} from '../components/Home/Home'
 
 export const AppRoutes = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const AppRoutes = createBrowserRouter([
       },
       {
         path: '/home',
-        element: <h1>home</h1>,
+        element: <Home/>,
         index: true, 
       },
       {

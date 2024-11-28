@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { smIcons } from "../../assets/icons";
-import '../Icon/Tienda.css';
+import './index.css';
 
 export const Tienda = ({ param, onClick }) => {
   return (

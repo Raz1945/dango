@@ -30,7 +30,8 @@ export const Nav = () => {
       </nav>
 
       {isNavbarVisible && (
-        <div className="navbar__modal">
+          <div className={`navbar__modal ${isNavbarVisible ? "navbar__modal--visible" : ""}`}>
+
           <button
             className="navbar__close"
             onClick={toggleNavbar}
