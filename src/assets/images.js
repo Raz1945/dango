@@ -1,3 +1,4 @@
+// Almacena las rutas de las imagenes 
 export const imgs = {
   portada: '/icons/tienda.svg',
   collection: {
