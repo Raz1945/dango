@@ -1,4 +1,4 @@
-.card__wrapper {
+.miniCard__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,61 +6,61 @@
   width: 100%;
   max-width: 223px;
   height: 324px;
-
   border-radius: 20px;
   background-color: hsla(0, 0%, 100%, 1);
   box-shadow: 3px 3px 9px 0px hsla(0, 0%, 0%, 0.25);
 }
 
-.card__img-wrapper {
+.miniCard__img-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: auto;
+  margin-block: 1rem;
 }
 
-.card__img {
+.miniCard__img {
   aspect-ratio: 1;
   width: 193px;
   height: 255px;
 }
 
-.card__info {
+.miniCard__info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin:1rem;
   width: 100%;
   max-width: 193px;
   max-height: 255px;
 }
 
-.card__price {
+.miniCard__price {
   color: hsla(0, 0%, 0%, 1);
   line-height: 1.4;
   font-size: 16px;
   font-weight: 400;
 }
 
-.card__btn {
+.miniCard__btn {
   width: 100px; 
   height: 26px; 
-  background-color: hsla(95, 30%, 50%, 1);
-  border: 1.5px solid hsla(95, 30%, 50%, 1);
+  background-color: hsl(0, 30%, 50%, 1);
+  border: 1.5px solid hsl(0, 30%, 50%, 1);
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.card__btn:hover,
-.card__btn:focus {
-  background-color: rgb(52, 95, 22);
-  border-color: rgb(30, 60, 15);
+.miniCard__btn:hover,
+.miniCard__btn:focus {
+  background-color: hsl(0, 100%, 45%);
+  border-color: hsl(0, 100%, 45%);
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.card__btn-text {
+.miniCard__btn-text {
   color: hsla(0, 0%, 100%, 1);
   font-size: 16px;
   font-weight: 400;
@@ -70,7 +70,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .card__info {
+  .miniCard__info {
     flex-direction: column;
     margin-top: 0.25rem;
     gap: 0.2rem;
