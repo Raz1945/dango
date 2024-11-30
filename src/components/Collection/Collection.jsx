@@ -48,10 +48,10 @@ export const Collection = () => {
           ...prevCart.slice(indexToRemove + 1),
         ];
       }
-      return prevCart; 
+      return prevCart;
     });
   };
-  
+
 
   const totalPrice = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
 
@@ -110,15 +110,17 @@ export const Collection = () => {
                   text='Quit'
                 />
               ))}
-              <span className="cart-modal__price">Total: ${totalPrice.toFixed(2)}</span>
             </div>
-            <button
-              type="button"
-              className="cart-modal__close-btn"
-              onClick={() => setShowCartModal(false)}
-            >
-              Close
-            </button>
+            <div className='cart-modal__bottom'>
+              <span className="cart-modal__price">Total: ${totalPrice.toFixed(2)}</span>
+              <button
+                type="button"
+                className="cart-modal__close-btn"
+                onClick={() => setShowCartModal(false)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -42,7 +42,6 @@
   font-size: 1.2rem;
 }
 
-/* todo */
 /* Estilo para el modal del carrito */
 .cart-modal {
   position: fixed;
@@ -99,8 +98,14 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-
+.cart-modal__bottom{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem .5rem;
+}
 .cart-modal__price {
+  text-align: center;
+  padding: 0.5rem 0.25rem;
   font-size: 1.2rem;
   font-weight: bold;
   color: hsl(0, 0%, 20%);
