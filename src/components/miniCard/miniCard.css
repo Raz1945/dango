@@ -34,8 +34,17 @@
   max-width: 193px;
   max-height: 255px;
 }
-
+.miniCard__price-info{
+  display: flex;
+  flex-direction: column;
+}
 .miniCard__price {
+  color: hsla(0, 0%, 0%, 1);
+  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 400;
+}
+.miniCard__price-cant{
   color: hsla(0, 0%, 0%, 1);
   line-height: 1.4;
   font-size: 16px;
