@@ -11,7 +11,7 @@ El entregable debe estar a la altura de lo que se pretende en un sitio de ecomme
 ## Notas
 Las consultas son bienvenidas!
 El CSS debe ser realizado con tailwind
-Los sliders deben ser realizados con Swiper
+Los sliders deben ser realizados con Swiper [No se uso la libreria de swiper]
 Si se encuentra alguna pequeña inconsistencia en el Figma, se debe ponderar la consistencia y no debe ser replicada en la implementación.
 
 ## Criterios de aceptación
