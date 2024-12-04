@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './miniCard.css';
 
-export const MiniCard = ({ image, price, buttonClass, onClick, isDisabled, text }) => {
+export const MiniCard = ({
+  image,
+  price,
+  buttonClass = '',
+  onClick,
+  isDisabled = false,
+  text,
+  cant,
+}) => {
   return (
     <div className='miniCard__wrapper'>
       <div className='miniCard__img-wrapper'>
@@ -10,7 +18,10 @@ export const MiniCard = ({ image, price, buttonClass, onClick, isDisabled, text 
       </div>
 
       <div className='miniCard__info'>
-        <span className='miniCard__price'>{price}</span>
+        <div className='miniCard__price-info'>
+          <span className='miniCard__price'>{price}</span>
+          <span className='miniCard__price-cant'>cant: {cant}</span>
+        </div>
         <button
           type="button"
           className={`miniCard__btn ${isDisabled ? 'miniCard__btn--disabled' : ''} ${buttonClass}`}
@@ -29,13 +40,9 @@ export const MiniCard = ({ image, price, buttonClass, onClick, isDisabled, text 
 MiniCard.propTypes = {
   image: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  buttonClass: PropTypes.string, 
+  buttonClass: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  cant: PropTypes.number.isRequired,
   isDisabled: PropTypes.bool,
-};
-
-MiniCard.defaultProps = {
-  isDisabled: false,
-  buttonClass: '',
 };

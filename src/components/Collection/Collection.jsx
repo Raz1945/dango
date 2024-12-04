@@ -10,6 +10,7 @@ import './Collection.css';
 const itemsPerPage = 8; // Cantidad de items máximo por página
 const allData = Object.values(collection);
 
+// Lógica actualizada para manejar productos con cantidad
 export const Collection = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [cart, setCart] = useState([]);
@@ -20,7 +21,7 @@ export const Collection = () => {
   const endIndex = startIndex + itemsPerPage;
   const visibleData = allData.slice(startIndex, endIndex);
 
-  // Controles 
+  // Controles
   const handleNextPage = () => {
     if (currentPage < Math.ceil(allData.length / itemsPerPage)) {
       setCurrentPage((prev) => prev + 1);
@@ -35,27 +36,46 @@ export const Collection = () => {
 
   // Agregar producto al carrito
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.product.id === product.id);
+      if (existingItem) {
+        // Si el producto ya existe, incrementamos la cantidad
+        return prevCart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        );
+      } else {
+        // Si no existe, lo añadimos con cantidad inicial 1
+        return [...prevCart, { product, cantidad: 1 }];
+      }
+    });
   };
 
-  // Quita producto al carrito
+  // Quitar producto del carrito
   const removeFromCart = (product) => {
     setCart((prevCart) => {
-      const indexToRemove = prevCart.findIndex((item) => item === product);
-      if (indexToRemove !== -1) {
-        return [
-          ...prevCart.slice(0, indexToRemove),
-          ...prevCart.slice(indexToRemove + 1),
-        ];
+      const existingItem = prevCart.find((item) => item.product.id === product.id);
+      if (existingItem) {
+        if (existingItem.cantidad > 1) {
+          // Si la cantidad es mayor a 1, reducimos la cantidad
+          return prevCart.map((item) =>
+            item.product.id === product.id
+              ? { ...item, cantidad: item.cantidad - 1 }
+              : item
+          );
+        } else {
+          // Si la cantidad es 1, eliminamos el producto del carrito
+          return prevCart.filter((item) => item.product.id !== product.id);
+        }
       }
       return prevCart;
     });
   };
 
+  const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.cantidad, 0);
 
-  const totalPrice = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
-
-  // Muestra automáticamente el modal si hay productos en el carrito
+  // Mostrar automáticamente el modal si hay productos en el carrito
   useEffect(() => {
     if (cart.length > 0) {
       setShowCartModal(true);
@@ -66,7 +86,6 @@ export const Collection = () => {
     <>
       <div className="collection__wrapper">
         <h1 className="collection__title">Featured Collection</h1>
-
         <div className="collection__grid">
           {visibleData.map((item, index) => (
             <Card
@@ -82,10 +101,7 @@ export const Collection = () => {
 
         {/* Controles */}
         <div className="pagination__controls">
-          <LeftArrowBtn
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-          />
+          <LeftArrowBtn onClick={handlePrevPage} disabled={currentPage === 1} />
           <RightArrowBtn
             onClick={handleNextPage}
             disabled={currentPage === Math.ceil(allData.length / itemsPerPage)}
@@ -93,26 +109,27 @@ export const Collection = () => {
         </div>
       </div>
 
-
-      {/* //todo Mover */}
       {/* Modal del carrito */}
       {showCartModal && (
-        <div className={`cart-modal ${showCartModal ? 'show' : ''}`}>
+        <div className={`cart-modal ${showCartModal ? "show" : ""}`}>
           <div className="cart-modal__wrapper">
             <div className="cart-modal__product-card">
-              {cart.map((item, index) => (
+              {cart.map((item) => (
                 <MiniCard
-                  key={index}
-                  image={item.image}
-                  price={`$${item.price}`}
-                  onClick={() => removeFromCart(item)}
-                  buttonClass='quit'
-                  text='Quit'
+                  key={item.product.id}
+                  image={item.product.image}
+                  price={`$${item.product.price}`}
+                  cant={item.cantidad}
+                  onClick={() => removeFromCart(item.product)}
+                  buttonClass="quit"
+                  text="Quit"
                 />
               ))}
             </div>
-            <div className='cart-modal__bottom'>
-              <span className="cart-modal__price">Total: ${totalPrice.toFixed(2)}</span>
+            <div className="cart-modal__bottom">
+              <span className="cart-modal__price">
+                Total: ${totalPrice.toFixed(2)}
+              </span>
               <button
                 type="button"
                 className="cart-modal__close-btn"
@@ -127,3 +144,4 @@ export const Collection = () => {
     </>
   );
 };
+
